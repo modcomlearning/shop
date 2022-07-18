@@ -288,7 +288,10 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-mtp://INFINIX_MOBILITY_LIMITED_Infinix_HOT_10_Lite_06076370CO136963/Internal%20shared%20storage/Pictures/Screenshot/Screenshot_20220718-083244.png
+You are done, RUn Your code on the device.
+
+## ScreenShot
+![Screenshot_20220718-083244](https://user-images.githubusercontent.com/66998462/179450564-569e7f2a-72d2-4059-9669-e5ba126b3d18.png)
 
 
 
