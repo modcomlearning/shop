@@ -4,7 +4,7 @@
 ## Step 1.
 ### Create a New Project using Empty Activity, Open your build.gradle(Module) add below lines , these are dependancies we will need in our project
 
-... 
+```
 dependencies {
      
     ..... 
@@ -17,7 +17,7 @@ dependencies {
 ## Step 2
 ### Create a New Kotlin Class Named Product.kt, put below code, this is a model that will define the data fields we will be working on.
 
-...
+```
   class Product (
       var product_name : String = "",
       var product_cost : String = "",
@@ -29,7 +29,7 @@ dependencies {
 ### Create a new XML layout under res - layout, name this XML single_item.xml, these files defines how our items will be displayed to the user.
 
 
-...
+```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
