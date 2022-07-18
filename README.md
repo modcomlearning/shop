@@ -288,7 +288,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-### Incase of erros with compatibilty issues with AndroidX add below file to gradle.properties add below line
+### Incase of errors with compatibilty issues with AndroidX add below file to gradle.properties add below line
 ```
 android.enableJetifier=true
 ```
