@@ -293,10 +293,19 @@ class MainActivity : AppCompatActivity() {
 android.enableJetifier=true
 ```
 
+### You can also add Internet Permissions in AndroidManifest.xml.
+```
+  <uses-permission android:name="android.permission.INTERNET"/>
+```
+
+
 You are done, Run Your code on the device.
 
-## ScreenShot
+## Looks Like below ScreenShot
 ![Screenshot_20220718-083244](https://user-images.githubusercontent.com/66998462/179450564-569e7f2a-72d2-4059-9669-e5ba126b3d18.png)
 
 
+References.
+(https://developer.android.com/guide/topics/ui/layout/recyclerview)
 
+Buy me a coffee!
