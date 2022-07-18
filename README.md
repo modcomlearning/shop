@@ -28,6 +28,7 @@ dependencies {
 ## Step 3
 ### Create a new XML layout under res - layout, name this XML single_item.xml, these files defines how our items will be displayed to the user.
 
+
 ...
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -109,8 +110,8 @@ dependencies {
 ## Step 4
 ### Below we create a Recycler adapter that will connect the XML file and the Model we created on Step 2 and 3, the Recycer adpater also will receive data coming from our API
 
-...
 
+...
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
