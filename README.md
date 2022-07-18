@@ -3,7 +3,7 @@
 
 ## Step 1.
 ### Create a New Project using Empty Activity, Open your build.gradle(Module) add below lines , these are dependancies we will need in our project
-
+#### Glide will be used to Load images, Loopj will help us get data from our API and GSON to make data in the right format to be used by RecyclerAdapter
 ```
 dependencies {
      
@@ -111,7 +111,7 @@ dependencies {
 ```
 
 ## Step 4
-### Below we create a Recycler adapter that will connect the XML file and the Model we created on Step 2 and 3, the Recycer adpater also will receive data coming from our API
+### Below we create a Recycler adapter that will connect the XML file and the Model we created on Step 2 and 3, the Recycler adpater also will receive data coming from our API
 
 
 ```
