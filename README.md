@@ -1,4 +1,4 @@
-# Recycler View - In this Product we create a Recycler using data from an online API.
+# Recycler View - In this Project we create a Recycler using data from an online API.
 ## RecyclerView is the ViewGroup that contains the views corresponding to your data. · Each individual element in the list is defined by a view holder object
 
 ## Step 1.
@@ -288,7 +288,12 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-You are done, RUn Your code on the device.
+### Incase of erros with compatibilty issues with AndroidX add below file to gradle.properties add below line
+```
+android.enableJetifier=true
+```
+
+You are done, Run Your code on the device.
 
 ## ScreenShot
 ![Screenshot_20220718-083244](https://user-images.githubusercontent.com/66998462/179450564-569e7f2a-72d2-4059-9669-e5ba126b3d18.png)
