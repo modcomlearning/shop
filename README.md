@@ -13,7 +13,8 @@ dependencies {
     implementation "com.google.code.gson:gson:2.8.7"
     .....
 }
-    
+```
+
 ## Step 2
 ### Create a New Kotlin Class Named Product.kt, put below code, this is a model that will define the data fields we will be working on.
 
@@ -24,7 +25,8 @@ dependencies {
       var image_url : String = "",// all images from mipmap and drawable
       var product_desc: String = "" ,
   )
-  
+```
+
 ## Step 3
 ### Create a new XML layout under res - layout, name this XML single_item.xml, these files defines how our items will be displayed to the user.
 
@@ -106,12 +108,13 @@ dependencies {
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
+```
 
 ## Step 4
 ### Below we create a Recycler adapter that will connect the XML file and the Model we created on Step 2 and 3, the Recycer adpater also will receive data coming from our API
 
 
-...
+```
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -174,11 +177,12 @@ class RecyclerAdapter(var context: Context)://When you want to toast smthg witho
     }
 }//end class
 
+```
 
 ## Step 5
 ### Now Go to activity_main.xml and create a recycler View widget and a Progress Bar.
 
-...
+```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -205,13 +209,14 @@ class RecyclerAdapter(var context: Context)://When you want to toast smthg witho
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+```
 
 ## Step 6
 ### We now head to our MainActivity File and Get data from our API, we will be getting data from below API - (Application Programming Interface), this link will provide us data from a database.
 (https://modcom.pythonanywhere.com/api/all)
 #### Open Your Main Activity and write this Code. Below code gets data from our API and pushes to the recycler adapter which maps the data to our XML.
 
-...
+```
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -281,7 +286,9 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = recyclerAdapter
     }
 }
+```
 
+mtp://INFINIX_MOBILITY_LIMITED_Infinix_HOT_10_Lite_06076370CO136963/Internal%20shared%20storage/Pictures/Screenshot/Screenshot_20220718-083244.png
 
 
 
