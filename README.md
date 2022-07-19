@@ -449,11 +449,13 @@ class SingleActivity : AppCompatActivity() {
 ### Done, Run your App, you will see below screenshot
 ![Screenshot_20220719-095519](https://user-images.githubusercontent.com/66998462/179686006-dc2c3103-2617-4d90-8ea1-511c01291f83.png)
 
+### Click on One Product, you will see below screnshot
 
 ![Screenshot_20220719-095524](https://user-images.githubusercontent.com/66998462/179686058-5e6d27aa-9222-4349-8f2c-b2b23e1117af.png)
 
 
 References.
 (https://developer.android.com/guide/topics/ui/layout/recyclerview)
+(https://developer.android.com/training/data-storage/shared-preferences)
 
 Buy me a coffee!  
