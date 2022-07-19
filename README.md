@@ -308,9 +308,8 @@ You are done, Run Your code on the device.
 
 ## Step 7
 ### Creating a Single Page Display when one product is clicked.
-#### Right click on app - New Activity - Empty Activity. Give it a name SingleActivity - Finish
-#### afteractivity is created, head back to your recycler adapter and add below code inside  onBindViewHolder function.
-
+#### Right click on app - New - Activity - Empty Activity. Give it a name SingleActivity - Finish
+#### After Activity is created, head back to your recycler adapter and add below code inside  onBindViewHolder function.
 
 
 ```
@@ -398,7 +397,7 @@ You are done, Run Your code on the device.
 
 </LinearLayout>
 
-
+```
 
 
 ## Step 9
@@ -457,4 +456,4 @@ class SingleActivity : AppCompatActivity() {
 References.
 (https://developer.android.com/guide/topics/ui/layout/recyclerview)
 
-Buy me a coffee!
+Buy me a coffee!  
