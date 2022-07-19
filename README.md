@@ -444,7 +444,7 @@ class SingleActivity : AppCompatActivity() {
             .into(image)
     }
 }
-
+```
 
 ### Done, Run your App, you will see below screenshot
 ![Screenshot_20220719-095519](https://user-images.githubusercontent.com/66998462/179686006-dc2c3103-2617-4d90-8ea1-511c01291f83.png)
