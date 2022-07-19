@@ -305,6 +305,153 @@ You are done, Run Your code on the device.
 ![Screenshot_20220718-083244](https://user-images.githubusercontent.com/66998462/179450564-569e7f2a-72d2-4059-9669-e5ba126b3d18.png)
 
 
+## Step 7
+### Creating a Single Page Display when one product is clicked.
+#### Right click on app - New Activity - Empty Activity. Give it a name SingleActivity - Finish
+#### afteractivity is created, head back to your recycler adapter and add below code inside  onBindViewHolder function.
+
+
+
+```
+ holder.itemView.setOnClickListener {
+            //create a shared prefferences variable to store our clicked product
+            val prefs: SharedPreferences = context.getSharedPreferences(
+                "store",
+                Context.MODE_PRIVATE
+            )
+            //save the product
+            val editor: SharedPreferences.Editor = prefs.edit()
+            editor.putString("product_name", item.product_name)
+            editor.putString("product_desc", item.product_desc)
+            editor.putString("product_cost", item.product_cost)
+            editor.putString("image_url", item.image_url)
+            editor.apply()
+
+            //Navigate to SingleACtivity, Created Earlier
+            val i = Intent(context, SingleActivity::class.java)
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(i)
+
+        }
+        
+      ```
+      
+      NB: above code must be put below Glide code in Your Adapter created in Step 4
+      ```
+      Glide.with(context).load(item.image_url)
+            .apply(RequestOptions().centerCrop())
+            .into(image)
+      ```
+      
+## Step 8
+### Open the activity_single.xml and put below code, this code shows how a single item wil be displayed.
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SingleActivity">
+
+
+    <TextView
+        android:id="@+id/p_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Balance Shoes"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        android:padding="20dp"/>
+
+    <ImageView
+        android:id="@+id/img_url"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
+
+    <TextView
+        android:id="@+id/p_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Latest Desihn in the Market, Welcome All for Our Offers and delivery options Available"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:padding="20dp"/>
+
+    <TextView
+        android:id="@+id/p_cost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="KES 3200"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:textStyle="bold"/>
+
+</LinearLayout>
+```
+
+## Step 9
+### Open Your Single Activity.kt File and add below codes
+```
+
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+class SingleActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_single)
+
+        //access shared prefferences
+        val prefs: SharedPreferences = getSharedPreferences("store",
+            Context.MODE_PRIVATE)
+
+         //access the saved product_name from prefferences and put in the TextView
+        val title = prefs.getString("product_name", "")
+        val text_title = findViewById(R.id.p_name) as TextView
+        text_title.text = title
+
+        //access the saved product_desc from prefferences and put in the TextView
+        val desc = prefs.getString("product_desc", "")
+        val text_desc = findViewById(R.id.p_desc) as TextView
+        text_desc.text = desc
+
+        //access the saved product_cost from prefferences and put in the TextView
+        val cost = prefs.getString("product_cost", "")
+        val text_cost= findViewById(R.id.p_cost) as TextView
+        text_cost.text = cost
+
+        //access the saved image from prefferences and put in the ImageView Using Glide
+        val image_url = prefs.getString("image_url", "")
+        val image = findViewById(R.id.img_url) as ImageView
+        Glide.with(applicationContext).load(image_url)
+            .apply(RequestOptions().centerCrop())
+            .into(image)
+    }
+}
+```
+
+### Done, Run your App, you will see below screenshot
+![Screenshot_20220719-095519](https://user-images.githubusercontent.com/66998462/179686006-dc2c3103-2617-4d90-8ea1-511c01291f83.png)
+
+
+![Screenshot_20220719-095524](https://user-images.githubusercontent.com/66998462/179686058-5e6d27aa-9222-4349-8f2c-b2b23e1117af.png)
+
+
+
 References.
 (https://developer.android.com/guide/topics/ui/layout/recyclerview)
 
