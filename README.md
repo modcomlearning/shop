@@ -286,6 +286,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = recyclerAdapter
     }
 }
+
 ```
 
 ### Incase of errors with compatibilty issues with AndroidX add below file to gradle.properties add below line
@@ -334,17 +335,17 @@ You are done, Run Your code on the device.
 
         }
         
-      ```
+        
+```        
       
-      NB: above code must be put below Glide code in Your Adapter created in Step 4
-      ```
+### NB: above code must be put below Glide code in Your Adapter created in Step 4
       Glide.with(context).load(item.image_url)
             .apply(RequestOptions().centerCrop())
             .into(image)
-      ```
       
 ## Step 8
 ### Open the activity_single.xml and put below code, this code shows how a single item wil be displayed.
+
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
@@ -396,12 +397,14 @@ You are done, Run Your code on the device.
         android:textStyle="bold"/>
 
 </LinearLayout>
-```
+
+
+
 
 ## Step 9
 ### Open Your Single Activity.kt File and add below codes
-```
 
+```
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -442,14 +445,13 @@ class SingleActivity : AppCompatActivity() {
             .into(image)
     }
 }
-```
+
 
 ### Done, Run your App, you will see below screenshot
 ![Screenshot_20220719-095519](https://user-images.githubusercontent.com/66998462/179686006-dc2c3103-2617-4d90-8ea1-511c01291f83.png)
 
 
 ![Screenshot_20220719-095524](https://user-images.githubusercontent.com/66998462/179686058-5e6d27aa-9222-4349-8f2c-b2b23e1117af.png)
-
 
 
 References.
