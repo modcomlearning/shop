@@ -455,7 +455,7 @@ class SingleActivity : AppCompatActivity() {
 
 
 References.
-(https://developer.android.com/guide/topics/ui/layout/recyclerview)
+(https://developer.android.com/guide/topics/ui/layout/recyclerview)  <br/>
 (https://developer.android.com/training/data-storage/shared-preferences)
 
 Buy me a coffee!  
