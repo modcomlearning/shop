@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.isaac.testapi2.R
+import com.isaac.testapi2.SingleActivity
 
 class RecyclerAdapter(var context: Context)://When you want to toast smthg without intent or activities
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
@@ -44,18 +45,31 @@ class RecyclerAdapter(var context: Context)://When you want to toast smthg witho
             .into(image)
         //image.setImageResource(item.image)
 
-//        holder.itemView.setOnClickListener {
-//
-//
-//
-//        }
+        holder.itemView.setOnClickListener {
+            val prefs: SharedPreferences = context.getSharedPreferences(
+                "store",
+                Context.MODE_PRIVATE
+            )
+
+            val editor: SharedPreferences.Editor = prefs.edit()
+            editor.putString("product_name", item.product_name)
+            editor.putString("product_desc", item.product_desc)
+            editor.putString("product_cost", item.product_cost)
+            editor.putString("image_url", item.image_url)
+            editor.apply()
+
+            val i = Intent(context, SingleActivity::class.java)
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(i)
+
+        }
     }
 
     override fun getItemCount(): Int {
         return productList.size
     }
 
-    //we will call this function o Retrofit response
+    //we will call this function on Loopj response
     fun setProductListItems(productList: List<Product>){
         this.productList = productList
         notifyDataSetChanged()
