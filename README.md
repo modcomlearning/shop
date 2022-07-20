@@ -539,22 +539,26 @@ class SingleActivity : AppCompatActivity() {
 
 ## Step 11
 ### Move to Single Activity.kt and put below code that sends the amount and phone number to an API, Endpoint- (https://modcom.pythonanywhere.com/mpesa_payment)
+#### Here we find all views from the XML, we use loopj to post the amounmt and phone to our endpoint.
 
 
 ```
-val progressbar = findViewById<ProgressBar>(R.id.progressbar)
+         //find views
+        val progressbar = findViewById<ProgressBar>(R.id.progressbar)
         progressbar.visibility = View.GONE
+       
         val phone = findViewById<EditText>(R.id.phone)
         val pay = findViewById<Button>(R.id.pay)
 
         pay.setOnClickListener {
             progressbar.visibility  = View.VISIBLE
              val client = AsyncHttpClient(true, 80, 443)
-             val json = JSONObject()
+             val json = JSONObject() //add phone and amount to json object
               json.put("amount", cost)
               json.put("phone", phone)
 
               val con_body = StringEntity(json.toString())
+              //post to API
               client.post(this, "https://modcom.pythonanywhere.com/mpesa_payment", con_body, "application/json",
               object : JsonHttpResponseHandler(){
                   override fun onSuccess(
@@ -563,7 +567,8 @@ val progressbar = findViewById<ProgressBar>(R.id.progressbar)
                       response: JSONObject?
                   ) {
                       //super.onSuccess(statusCode, headers, response)
-                      Toast.makeText(applicationContext, "Paid", Toast.LENGTH_LONG).show()
+                      //Todo Check response code from API, 
+                      Toast.makeText(applicationContext, "Success. Complete Payment on Your Phone", Toast.LENGTH_LONG).show()
                       progressbar.visibility = View.GONE
                   }//
 
@@ -575,7 +580,8 @@ val progressbar = findViewById<ProgressBar>(R.id.progressbar)
                       errorResponse: JSONObject?
                   ) {
                       //super.onFailure(statusCode, headers, throwable, errorResponse)
-                      Toast.makeText(applicationContext, "Not Paid", Toast.LENGTH_LONG).show()
+                      //Todo handle the error
+                      Toast.makeText(applicationContext, "Error Occurred"+statusCode, Toast.LENGTH_LONG).show()
                       progressbar.visibility = View.GONE
                   }
               })
@@ -584,7 +590,7 @@ val progressbar = findViewById<ProgressBar>(R.id.progressbar)
 ```        
        
        
- ### Your complete Single Activity.kt should look something like below.
+ ### Your complete SingleActivity.kt should look something like below.
     
  ```
     
