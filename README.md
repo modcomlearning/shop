@@ -699,5 +699,5 @@ References. <br/>
 
 Buy me a coffee!  
 
-### Follow this link for updades on how to create the APIs used in this project using Python.
+### Follow this link for updates on this code and how to create the APIs used in this project using Python.
 ### Cheers.
