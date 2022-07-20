@@ -454,6 +454,235 @@ class SingleActivity : AppCompatActivity() {
 ![Screenshot_20220719-095524](https://user-images.githubusercontent.com/66998462/179686058-5e6d27aa-9222-4349-8f2c-b2b23e1117af.png)
 
 
+
+```
+
+
+
+## Step 10
+### Adding MPESA Payment on the app using Daraja, Please go to  (https://developer.safaricom.co.ke/)   and sign up for a Daraja account and get your secret and consumer keys.
+#### Now go to your activity_single.xml and add 1 Edit Text, 1 Button and 1 Progress Bar, Your activity_single.xml should now look like below code.
+
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SingleActivity">
+
+
+    <TextView
+        android:id="@+id/p_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Balance Shoes"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        android:padding="20dp"/>
+
+    <ImageView
+        android:id="@+id/img_url"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
+
+    <TextView
+        android:id="@+id/p_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Latest Desihn in the Market, Welcome All for Our Offers and delivery options Available"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:padding="20dp"/>
+
+    <TextView
+        android:id="@+id/p_cost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="KES 3200"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:textStyle="bold"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:hint="ENter Phone 254"
+        android:id="@+id/phone"/>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Pay Now"
+        android:id="@+id/pay"/>
+
+</LinearLayout>
+```
+
+
+## Step 11
+### Move to Single Activity.kt and put below code that sends the amount and phone number to an API
+
+
+```
+val progressbar = findViewById<ProgressBar>(R.id.progressbar)
+        progressbar.visibility = View.GONE
+        val phone = findViewById<EditText>(R.id.phone)
+        val pay = findViewById<Button>(R.id.pay)
+
+        pay.setOnClickListener {
+            progressbar.visibility  = View.VISIBLE
+             val client = AsyncHttpClient(true, 80, 443)
+             val json = JSONObject()
+              json.put("amount", cost)
+              json.put("phone", phone)
+
+              val con_body = StringEntity(json.toString())
+              client.post(this, "https://modcom.pythonanywhere.com/mpesa_payment", con_body, "application/json",
+              object : JsonHttpResponseHandler(){
+                  override fun onSuccess(
+                      statusCode: Int,
+                      headers: Array<out Header>?,
+                      response: JSONObject?
+                  ) {
+                      //super.onSuccess(statusCode, headers, response)
+                      Toast.makeText(applicationContext, "Paid", Toast.LENGTH_LONG).show()
+                      progressbar.visibility = View.GONE
+                  }//
+
+
+                  override fun onFailure(
+                      statusCode: Int,
+                      headers: Array<out Header>?,
+                      throwable: Throwable?,
+                      errorResponse: JSONObject?
+                  ) {
+                      //super.onFailure(statusCode, headers, throwable, errorResponse)
+                      Toast.makeText(applicationContext, "Not Paid", Toast.LENGTH_LONG).show()
+                      progressbar.visibility = View.GONE
+                  }
+              })
+
+        }//end
+        
+        ```
+
+    ### Your complete Single Activity.kt should look something like below.
+    
+    ```
+    
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import android.widget.*
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.loopj.android.http.AsyncHttpClient
+import com.loopj.android.http.JsonHttpResponseHandler
+import cz.msebera.android.httpclient.Header
+import cz.msebera.android.httpclient.entity.StringEntity
+import org.json.JSONObject
+
+class SingleActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_single)
+
+        //access shared prefferences
+        val prefs: SharedPreferences = getSharedPreferences("store",
+            Context.MODE_PRIVATE)
+
+         //access the saved product_name from prefferences and put in the TextView
+        val title = prefs.getString("product_name", "")
+        val text_title = findViewById(R.id.p_name) as TextView
+        text_title.text = title
+
+        //access the saved product_desc from prefferences and put in the TextView
+        val desc = prefs.getString("product_desc", "")
+        val text_desc = findViewById(R.id.p_desc) as TextView
+        text_desc.text = desc
+
+        //access the saved product_cost from prefferences and put in the TextView
+        val cost = prefs.getString("product_cost", "")
+        val text_cost= findViewById(R.id.p_cost) as TextView
+        text_cost.text = cost
+
+        //access the saved image from prefferences and put in the ImageView Using Glide
+        val image_url = prefs.getString("image_url", "")
+        val image = findViewById(R.id.img_url) as ImageView
+        Glide.with(applicationContext).load(image_url)
+            .apply(RequestOptions().centerCrop())
+            .into(image)
+
+        val progressbar = findViewById<ProgressBar>(R.id.progressbar)
+        progressbar.visibility = View.GONE
+        val phone = findViewById<EditText>(R.id.phone)
+        val pay = findViewById<Button>(R.id.pay)
+
+        pay.setOnClickListener {
+            progressbar.visibility  = View.VISIBLE
+             val client = AsyncHttpClient(true, 80, 443)
+             val json = JSONObject()
+              json.put("amount", cost)
+              json.put("phone", phone)
+
+              val con_body = StringEntity(json.toString())
+              client.post(this, "https://modcom.pythonanywhere.com/mpesa_payment", con_body, "application/json",
+              object : JsonHttpResponseHandler(){
+                  override fun onSuccess(
+                      statusCode: Int,
+                      headers: Array<out Header>?,
+                      response: JSONObject?
+                  ) {
+                      //super.onSuccess(statusCode, headers, response)
+                      Toast.makeText(applicationContext, "Paid", Toast.LENGTH_LONG).show()
+                      progressbar.visibility = View.GONE
+                  }//
+
+
+                  override fun onFailure(
+                      statusCode: Int,
+                      headers: Array<out Header>?,
+                      throwable: Throwable?,
+                      errorResponse: JSONObject?
+                  ) {
+                      //super.onFailure(statusCode, headers, throwable, errorResponse)
+                      Toast.makeText(applicationContext, "Not Paid", Toast.LENGTH_LONG).show()
+                      progressbar.visibility = View.GONE
+                  }
+              })
+
+        }//end
+
+
+    }
+}
+
+
+
+
 References. <br/>
 (https://developer.android.com/guide/topics/ui/layout/recyclerview)  <br/>
 (https://developer.android.com/training/data-storage/shared-preferences)
