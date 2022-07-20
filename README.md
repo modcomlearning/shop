@@ -455,9 +455,6 @@ class SingleActivity : AppCompatActivity() {
 
 
 
-```
-
-
 
 ## Step 10
 ### Adding MPESA Payment on the app using Daraja, Please go to  (https://developer.safaricom.co.ke/)   and sign up for a Daraja account and get your secret and consumer keys.
@@ -541,7 +538,7 @@ class SingleActivity : AppCompatActivity() {
 
 
 ## Step 11
-### Move to Single Activity.kt and put below code that sends the amount and phone number to an API
+### Move to Single Activity.kt and put below code that sends the amount and phone number to an API, Endpoint- (https://modcom.pythonanywhere.com/mpesa_payment)
 
 
 ```
@@ -584,12 +581,12 @@ val progressbar = findViewById<ProgressBar>(R.id.progressbar)
               })
 
         }//end
-        
-        ```
-
-    ### Your complete Single Activity.kt should look something like below.
+```        
+       
+       
+ ### Your complete Single Activity.kt should look something like below.
     
-    ```
+ ```
     
 import android.content.Context
 import android.content.SharedPreferences
@@ -646,7 +643,7 @@ class SingleActivity : AppCompatActivity() {
              val client = AsyncHttpClient(true, 80, 443)
              val json = JSONObject()
               json.put("amount", cost)
-              json.put("phone", phone)
+              json.put("phone", phone.text.toString())
 
               val con_body = StringEntity(json.toString())
               client.post(this, "https://modcom.pythonanywhere.com/mpesa_payment", con_body, "application/json",
@@ -679,12 +676,20 @@ class SingleActivity : AppCompatActivity() {
 
     }
 }
+```
+
+### Run you code you can now pay through MPESA.NB: Here am Using Sandbox ,we only pass a static amount - 1 KES our API
+
+![Screenshot_20220720-101936](https://user-images.githubusercontent.com/66998462/179923753-3c8d224f-07da-4530-a6de-6fe31f9b4c5a.png)
+<br/>
+![Screenshot_20220720-102003](https://user-images.githubusercontent.com/66998462/179923820-5c1637b1-8e84-40c6-b9b3-ffd3521ace41.png)
 
 
 
 
 References. <br/>
 (https://developer.android.com/guide/topics/ui/layout/recyclerview)  <br/>
-(https://developer.android.com/training/data-storage/shared-preferences)
+(https://developer.android.com/training/data-storage/shared-preferences) <br/>
+(https://developer.safaricom.co.ke/)
 
 Buy me a coffee!  
