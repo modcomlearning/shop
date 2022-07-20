@@ -678,12 +678,11 @@ class SingleActivity : AppCompatActivity() {
 }
 ```
 
-### Run you code you can now pay through MPESA.NB: Here am Using Sandbox ,we only pass a static amount - 1 KES our API
+### Run you code you can now pay through MPESA.NB: Here am Using MPESA Sandbox ,we only pass a static amount - 1 KES to Our API
 
 ![Screenshot_20220720-101936](https://user-images.githubusercontent.com/66998462/179923753-3c8d224f-07da-4530-a6de-6fe31f9b4c5a.png)
 <br/>
 ![Screenshot_20220720-102003](https://user-images.githubusercontent.com/66998462/179923820-5c1637b1-8e84-40c6-b9b3-ffd3521ace41.png)
-
 
 
 
