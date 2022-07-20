@@ -539,7 +539,7 @@ class SingleActivity : AppCompatActivity() {
 
 ## Step 11
 ### Move to Single Activity.kt and put below code that sends the amount and phone number to an API, Endpoint- (https://modcom.pythonanywhere.com/mpesa_payment)
-#### Here we find all views from the XML, we use loopj to post the amounmt and phone to our endpoint.
+#### Here we find all views from the XML, we use loopj to post the amount and phone to our endpoint.
 
 
 ```
