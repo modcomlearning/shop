@@ -47,4 +47,22 @@
         android:layout_margin="10dp"
         android:textStyle="bold"/>
 
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ENter Phone 254"
+        android:id="@+id/phone"/>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pay Now"
+        android:id="@+id/pay"/>
+
 </LinearLayout>
