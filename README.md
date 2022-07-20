@@ -1,4 +1,4 @@
-# Recycler View - In this Project we create a Recycler using data from an online API.
+# Recycler View - In this Project we create a Recycler using data from an online API, Integrate with MPESA Payments
 ## RecyclerView is the ViewGroup that contains the views corresponding to your data. · Each individual element in the list is defined by a view holder object
 
 ## Step 1.
